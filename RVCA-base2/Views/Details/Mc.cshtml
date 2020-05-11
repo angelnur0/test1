@@ -1,0 +1,383 @@
+﻿@model CabinetUkData
+@using RVCA_base2.Models
+
+@{
+    ViewBag.Title = "MC";
+
+
+    System.Data.DataRow[] oldFunds = ViewBag.oldFunds;
+    System.Data.DataRow[] curFunds = ViewBag.curFunds;
+
+}
+
+@if (Model == null)
+{
+    <p class="bg-warning" style="padding: 15px">Данные по инвестору не найдены</p>
+}
+else
+{
+
+    <link href="/Content/level4.css" rel="stylesheet" />
+
+    <h1 class="page-header">Управляющая компания</h1>
+
+    <p class="alert alert-info">Страница находится в разработке</p>
+
+    <h2>@Model.Title</h2>
+
+    <h3>Общая информация</h3>
+    <table class="table table-striped">
+        <tr><td>Название</td><td><span>@Model.Title</span></td></tr>
+        <tr><td>Описание</td><td><span>@Model.Description</span></td></tr>
+        <tr><td>Сайт</td><td><span><a href="@Model.Url">@Model.Url</a></span></td></tr>
+        <tr><td>Юридическое название</td><td><span>@Model.LegalName</span></td></tr>
+        <tr><td>Юрисдикция</td><td><span>@Model.Jurisdiction</span></td></tr>
+        <tr><td>Тип фонда</td><td><span>@Model.FundType</span></td></tr>
+        <tr><td>Статус УК </td><td><span>@Model.UKStatus</span></td></tr>
+        <tr><td>Год основания</td><td><span>@Model.FoundationDate</span></td></tr>
+        <tr><td>Активы под управлением</td><td><span>@Model.ActivesUnderControl</span></td></tr>
+        <tr><td>Фонды под управлением</td><td><span>@Html.Raw(Model.FundsUnderContolCount)</span></td></tr>
+        <tr><td>Источники капитала</td><td><span>@Html.Raw(Model.CapitalSources)</span></td></tr>
+        <tr><td>Географический охват</td><td><span>@Html.Raw(@Model.Geography)</span></td></tr>
+        <tr><td>Географический фокус</td><td><span>@Html.Raw(@Model.GeographyFocus)</span></td></tr>
+        <tr><td>Фокус по стадиям</td><td><span>@Html.Raw(Model.StageFocus)</span></td></tr>
+        <tr><td>Фокус по отраслям</td><td><span>@Html.Raw(Model.OtraslFocus)</span></td></tr>
+        <tr><td>Фокус по регионам РФ</td><td><span>@Html.Raw(Model.RegionalFocus)</span></td></tr>
+        <tr><td>Инвестиционная стратегия</td><td><span>@Html.Raw(Model.InvestStrategy)</span></td></tr>
+        <tr><td>Совокупное число инвестиций</td><td><span>@Html.Raw(Model.TotalInvestmentsCount)</span></td></tr>
+        <tr><td>Число фондов</td><td><span>@Html.Raw(Model.TotalFundsCount)</span></td></tr>
+    </table>
+
+    <h3>Контакты</h3>
+    <table class="table table-striped">
+        <tr><td>Страна расположения Головного офиса</td><td><span>@Model.HeadOfficeCountry</span></td></tr>
+        <tr><td>Юрисдикция</td><td><span>@Model.Jurisdiction</span></td></tr>
+        <tr><td>Адрес Головного офиса</td><td><span>@Model.HeadOfficeAddress</span></td></tr>
+        <tr><td>Альтернативный офис</td><td><span>@Html.Raw(Model.AlternateOfficeAddress)</span></td></tr>
+        <tr><td>URL</td><td><span><a href="@Model.Url">@Model.Url</a></span></td></tr>
+        <tr><td>E-mails</td><td><span><a href="mailto:@Model.Email">@Model.Email</a></span></td></tr>
+        <tr><td>Телефон</td><td><span>@Model.Phone</span></td></tr>
+    </table>
+
+
+    <h4>Руководство УК</h4>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Имя Фамилия</th>
+                <th>Должность</th>
+                <th>Контакты</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.ukBosses)
+            {
+                <tr>
+                    <td>@item.Name</td>
+                    <td>@item.Position</td>
+                    <td>@item.Contacts</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <h4>Сотрудники УК</h4>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Имя Фамилия</th>
+                <th>Должность</th>
+                <th>Контакты</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.ukEmployees)
+            {
+                <tr>
+                    <td>@item.Name</td>
+                    <td>@item.Position</td>
+                    <td>@item.Contacts</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <h3>Основные характеристики</h3>
+    <table class="table table-striped">
+        <tr><td>Дата начала фандрайзинга</td><td><span>@Model.FundrisingStartDate</span></td></tr>
+        <tr><td>Статус УК</td><td><span>@Model.UKStatus</span></td></tr>
+        <tr><td>Общее число портфельных Фондов </td><td><span>@Model.TotalPortfolioFunds</span></td></tr>
+        <tr><td>Текущее число портфельных фондов</td><td><span>@Model.CurrentPortfolioFunds</span></td></tr>
+        <tr><td>Общий капитал портфельных Фондов</td><td><span>@Model.TotalCapitalOfPortfolioFunds</span></td></tr>
+        <tr><td>Текущий капитал проинвестированных фондов</td><td><span>@Model.CurrentCapitalOfInvestmentFunds</span></td></tr>
+        <tr><td>Общее число проинвестированных проектов</td><td><span>@Model.CountOfInvesmentProjects</span></td></tr>
+        <tr><td>Примеры инвесторов</td><td><span>@Html.Raw(@Model.SampleInvestors)</span></td></tr>
+        <tr><td>Географическая Охват</td><td><span>@Html.Raw(@Model.GeographicalStrategy)</span></td></tr>
+        <tr><td>Географический Фокус</td><td><span>@Html.Raw(@Model.GeographicalCut)</span></td></tr>
+        <tr><td>Фокус по регионам РФ</td><td><span>@Html.Raw(Model.RegionalFocus)</span></td></tr>
+    </table>
+
+    <h4>Фонды под управлением</h4>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Название</th>
+                <th>Год основания</th>
+                <th>Тип</th>
+                <th>Статус</th>
+                <th>Целевой размер</th>
+                <th>Размер закрытия</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (var item in Model.FundsUnderControl)
+            {
+                <tr>
+                    <td><a href="/details/fund/@item.id/">@item.Name</a></td>
+                    <td>@item.Year</td>
+                    <td>@item.Type</td>
+                    <td>@item.Status</td>
+                    <td>@item.TargetValue</td>
+                    <td>@item.ClosingValue</td>
+                </tr>
+            }
+
+        </tbody>
+    </table>
+
+    <h4>Закрытые фонды</h4>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Название</th>
+                <th>Год закрытия</th>
+                <th>Тип</th>
+                <th>Статус</th>
+                <th>Целевой размер</th>
+                <th>Размер закрытия</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.ClosedFunds)
+            {
+                <tr>
+                    <td>@item.Name</td>
+                    <td>@item.Year</td>
+                    <td>@item.Type</td>
+                    <td>@item.Status</td>
+                    <td>@item.TargetValue</td>
+                    <td>@item.ClosingValue</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+
+    <h4>Соинвесторы</h4>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Название</th>
+                <th>Число инвестиций</th>
+                <th>Совокупный объем инвестиций</th>
+                <th>Перечень компаний</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.mutualInvestors)
+            {
+                <tr>
+                    <td>@item.Name</td>
+                    <td>@item.InvesmentCount</td>
+                    <td>@item.TotalInvestments</td>
+                    <td>@item.CompnayList</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+
+
+
+
+    <h3>Партнеры</h3>
+
+    <h4>Агент по размещению</h4>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Название</th>
+                <th>Отрасль</th>
+                <th>Расположение</th>
+                <th>Год основания</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.ListingAgent)
+            {
+                <tr>
+                    <td>@item.Name</td>
+                    <td>@item.Otrasl</td>
+                    <td>@item.Place</td>
+                    <td>@item.Year</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <h4>Юридические консультанты по формированию фонда</h4>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Название</th>
+                <th>Отрасль</th>
+                <th>Расположение</th>
+                <th>Год основания</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.LawConsultants)
+            {
+                <tr>
+                    <td>@item.Name</td>
+                    <td>@item.Otrasl</td>
+                    <td>@item.Place</td>
+                    <td>@item.Year</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <h4>Аудиторы</h4>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Название</th>
+                <th>Отрасль</th>
+                <th>Расположение</th>
+                <th>Год основания</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Auditor)
+            {
+                <tr>
+                    <td>@item.Name</td>
+                    <td>@item.Otrasl</td>
+                    <td>@item.Place</td>
+                    <td>@item.Year</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <h4>Поставщики услуг</h4>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Название</th>
+                <th>Отрасль</th>
+                <th>Расположение</th>
+                <th>Год основания</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Postavshiki)
+            {
+                <tr>
+                    <td>@item.Name</td>
+                    <td>@item.Otrasl</td>
+                    <td>@item.Place</td>
+                    <td>@item.Year</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <h3>Инвестиции фондов</h3>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Название Компании</th>
+                <th>Название фонда</th>
+                <th>Год инвестиции</th>
+                <th>Объем сделки</th>
+                <th>Отрасль</th>
+                <th>Страна</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.fundInvestments)
+            {
+                <tr>
+                    <td>
+                        @if (item.id > 999)
+                        {
+                            @item.CompanyName
+                        }
+                        else
+                        {
+                         <a href="/details/investment/@item.id">@item.CompanyName</a>
+                        }
+                    </td>
+                    <td>@item.FundName</td>
+                    <td>@item.InvesmentYear</td>
+                    <td>@item.Volume</td>
+                    <td>@item.Otrasl</td>
+                    <td>@item.Country</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <h3>Выходы фондов</h3>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Название Компании</th>
+                <th>Название фонда</th>
+                <th>Дата выхода</th>
+                <th>Объем выхода</th>
+                <th>Способ выхода</th>
+                <th>Тип выхода</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.fundExits)
+            {
+                <tr>
+                    <td>@item.CompanyName</td>
+                    <td>@item.FundName</td>
+                    <td>@item.ExitYear</td>
+                    <td>@item.ExitVolume</td>
+                    <td>@item.Sposob</td>
+                    <td>@item.Type</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+
+    <h3>Новости</h3>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Заголовок</th>
+                <th>Источник</th>
+            </tr>
+        </thead>
+        <tbody>
+        <tbody>
+            @foreach (var item in Model.news)
+            {
+                <tr>
+                    <td>@item.Header</td>
+                    <td><a href="@item.Url">@item.Url</a></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+
+}

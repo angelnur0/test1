@@ -1,0 +1,961 @@
+﻿@using RVCA_base2.Models;
+@model CabinetUkData
+@{
+    ViewBag.Title = "Личный кабинет УК";
+}
+
+<style>
+    .dataTables_paginate {
+        display: none;
+    }
+
+    .dataTables_info {
+        display: none;
+    }
+
+    td {
+        padding-bottom: 10px !important;
+    }
+
+    @@media screen and (max-width: 650px) {
+
+        table.controlsTable {
+            border: 0;
+        }
+
+
+
+            table.controlsTable thead {
+                border: none;
+                clip: rect(0 0 0 0);
+                height: 1px;
+                margin: -1px;
+                overflow: hidden;
+                padding: 0;
+                position: absolute;
+                width: 1px;
+            }
+
+
+
+            table.controlsTable tr {
+                display: block !important;
+                margin-bottom: .625em;
+            }
+
+
+
+            table.controlsTable td {
+                display: block;
+                text-align: left;
+            }
+
+
+
+                table.controlsTable td::before {
+                    content: attr(data-label);
+                    float: left;
+                    font-weight: bold;
+                    text-transform: uppercase;
+                }
+
+
+
+                table.controlsTable td:last-child {
+                    border-bottom: 0;
+                }
+    }
+</style>
+<script type="text/javascript">
+    $(document).ready(function(){
+        var href = "@ViewData["postHref"]";
+        debugger
+    var splitit = (href.split('#'))[1];
+    if(splitit !== "" || splitit !== "undefined"){
+        $('#page-wrapper').animate({
+            scrollTop: $('#'+splitit).offset().top-50
+        }, 2000);
+    }
+});
+</script>
+<div id="CabinetPage">
+    <link href="/Content/level4.css" rel="stylesheet" />
+    <h4 id="summary">Summary</h4>
+    <span style="float:left;"><a href="/cabinet/uk/@Model.id/editsummary/" title="Редактировать" class="btn btn-success"><i class="fa fa-edit"></i></a></span>
+    <br />
+    <br />
+    <table class="controlsTable table-striped" width="100%" style="border:1px solid green">
+        <tr>
+            <td class="col-sm-3"><b>Название:</b></td>
+            <td class="col-sm-3">@Model.Title</td>
+
+            <td class="col-sm-3"><b>Описание:</b></td>
+            <td class="col-sm-3">@Model.Description</td>
+        </tr>
+        <tr>
+            <td class="col-sm-3"><b>Юридическое название:</b></td>
+            <td class="col-sm-3">@Model.LegalName</td>
+
+            <td class="col-sm-3"><b>Юрисдикция:</b></td>
+            <td class="col-sm-3">@Model.Jurisdiction</td>
+        </tr>
+        <tr>
+            <td class="col-sm-3"><b>Тип фонда:</b></td>
+            <td class="col-sm-3">@Model.FundType</td>
+
+            <td class="col-sm-3"><b>Статус УК:</b></td>
+            <td class="col-sm-3">@Model.UKStatus</td>
+        </tr>
+        <tr>
+            <td class="col-sm-3"><b>Сайт:</b></td>
+            <td class="col-sm-3"><a href="@Model.WebSite">@Model.WebSite</a></td>
+
+            <td class="col-sm-3"><b>Инвестиционная стратегия:</b></td>
+            <td class="col-sm-3">@Model.InvestStrategy</td>
+        </tr>
+        <tr>
+            <td class="col-sm-3"><b>Год основания:</b></td>
+            <td class="col-sm-3">@Model.FoundationDate</td>
+
+            <td class="col-sm-3"></td>
+            <td class="col-sm-3"></td>
+        </tr>
+    </table>
+    <br />
+    @*<span style="float:left;"><a href="/cabinet/uk/@Model.id/editsummary2/" title="Редактировать" class="btn btn-success"><i class="fa fa-edit"></i></a></span>
+        <br />*@
+    <table class="controlsTable table-striped" width="100%">
+        <tr>
+            <td class="col-sm-3"><b>Фонды под управлением:</b></td>
+            <td class="col-sm-3">@Html.Raw(Model.FundsUnderContolCount)</td>
+
+            <td class="col-sm-3"><b>Активы под управлением:</b></td>
+            <td class="col-sm-3">@Model.ActivesUnderControl</td>
+        </tr>
+        <tr>
+            <td class="col-sm-3"><b>Географический охват:</b></td>
+            <td class="col-sm-3">@Model.Geography</td>
+
+            <td class="col-sm-3"><b>Географический фокус:</b></td>
+            <td class="col-sm-3">@Model.GeographyFocus</td>
+        </tr>
+        <tr>
+            <td class="col-sm-3"><b>Фокус по стадиям:</b></td>
+            <td class="col-sm-3">@Model.StageFocus</td>
+
+            <td class="col-sm-3"><b>Фокус по отраслям:</b></td>
+            <td class="col-sm-3">@Html.Raw(Model.OtraslFocus)</td>
+        </tr>
+        <tr>
+            <td class="col-sm-3"><b>Фокус по регионам:</b></td>
+            <td class="col-sm-3">@Html.Raw(Model.PrefferedRegions)</td>
+            <td class="col-sm-3"><b>Источники капитала:</b></td>
+            <td class="col-sm-3">@Html.Raw(Model.CapitalSources)</td>
+        </tr>
+        <tr>
+            <td class="col-sm-3"><b>Число инвестиций:</b></td>
+            <td class="col-sm-3">@Model.TotalInvestmentsCount</td>
+            <td class="col-sm-3"><b>Текущее число портфельных фондов:</b></td>
+            <td class="col-sm-3">@Model.TotalFundsCount</td>
+        </tr>
+    </table>
+    <br />
+    <h4 id="details">Подробная информация</h4>
+    <span style="float:left;"><a href="/cabinet/uk/@Model.id/editdetails/" title="Редактировать" class="btn btn-success"><i class="fa fa-edit"></i></a></span>
+    <br />
+    <br />
+    <table class="controlsTable table-striped" width="100%">
+        <tr>
+            <td class="col-sm-3"><b>Страна расположения головного офиса:</b></td>
+            <td class="col-sm-3">@Model.HeadOfficeCountry</td>
+
+            <td class="col-sm-3"><b>Юрисдикция:</b></td>
+            <td class="col-sm-3">@Model.Jurisdiction</td>
+        </tr>
+        <tr>
+            <td class="col-sm-3"><b>Адрес головного офиса:</b></td>
+            <td class="col-sm-3">@Model.HeadOfficeAddress</td>
+
+            <td class="col-sm-3"><b>Альтернативный офис:</b></td>
+            <td class="col-sm-3">@Model.AlternateOfficeAddress</td>
+        </tr>
+        <tr>
+            <td class="col-sm-3"><b>Сайт:</b></td>
+            <td class="col-sm-3"><a href="@Model.Url">@Model.Url</a></td>
+
+            <td class="col-sm-3"><b>E-Mail:</b></td>
+            <td class="col-sm-3"><a href="mailto:@Model.Email">@Model.Email</a></td>
+        </tr>
+        <tr>
+            <td class="col-sm-3"><b>Телефон:</b></td>
+            <td class="col-sm-3">@Model.Phone</td>
+
+            <td class="col-sm-3"></td>
+            <td class="col-sm-3"></td>
+        </tr>
+    </table>
+    <br />
+    <b>Руководство УК</b>
+    <br />
+    <span style="float:left;"><a href="javascript:editBossDetail(0,'Добавление контакта руководства')" class="btn btn-success"><i class="fa fa-plus"></i></a></span>
+    <br />
+    <table id="bossTable" class="table table-hover table-striped order-column" style="width:95%; cursor:pointer">
+        <thead>
+            <tr>
+                <th class="sorting_asc">ФИО</th>
+                <th class="sorting">Должность</th>
+                <th class="sorting">Контакты</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.ukBosses)
+            {
+                <tr>
+                    <td>@item.Name</td>
+                    <td>@item.Position</td>
+                    <td>@item.Contacts</td>
+                    <td><a href="javascript:editBossDetail(@item.id,'Редактирование')" title="Редактировать" class="btn btn-success btn-circle"><i class="fa fa-edit"></i></a></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <script type="text/javascript">
+
+        var table = $('#bossTable').dataTable({
+            "dom": '<"H"l<"toolbar">>rtip',
+            "order": [0, 'asc'],
+            "paging": "false",
+            "info": "false",
+            "bLengthChange": false,
+            "oLanguage": {
+                "sSearch": "Фильтр:",
+                "sInfo": "Отображаются строки с _START_ по _END_ из _TOTAL_",
+                "oPaginate": {
+                    "sFirst": "В начало",
+                    "sLast": "В конец",
+                    "sNext": "Следующая",
+                    "sPrevious": "Предыдущая"
+                }
+            }
+        });
+    </script>
+    <br />
+    <b>Сотрудники УК</b>
+    <br />
+    <span style="float:left;"><a href="javascript:editEmployeeDetail(0,'Добавление контакта сотрудника')" class="btn btn-success"><i class="fa fa-plus"></i></a></span>
+    <br />
+    <table id="employeeTable" class="table table-hover table-striped order-column" style="width:95%; cursor:pointer">
+        <thead>
+            <tr>
+                <th class="sorting_asc">ФИО</th>
+                <th class="sorting">Должность</th>
+                <th class="sorting">Контакты</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.ukEmployees)
+            {
+                <tr>
+                    <td>@item.Name</td>
+                    <td>@item.Position</td>
+                    <td>@item.Contacts</td>
+                    <td><a href="javascript:editEmployeeDetail(@item.id,'Редактирование контакта сотрудника')" title="Редактировать" class="btn btn-success btn-circle"><i class="fa fa-edit"></i></a></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <script type="text/javascript">
+
+        var table = $('#employeeTable').dataTable({
+            "dom": '<"H"l<"toolbar">>rtip',
+            "order": [0, 'asc'],
+            "paging": "false",
+            "info": "false",
+            "bLengthChange": false,
+            "oLanguage": {
+                "sSearch": "Фильтр:",
+                "sInfo": "Отображаются строки с _START_ по _END_ из _TOTAL_",
+                "oPaginate": {
+                    "sFirst": "В начало",
+                    "sLast": "В конец",
+                    "sNext": "Следующая",
+                    "sPrevious": "Предыдущая"
+                }
+            }
+        });
+    </script>
+    <br />
+    <h4 id="maindetails">Основные характеристики</h4>
+    <span style="float:left;"><a href="/cabinet/uk/@Model.id/editmaindetails/" title="Редактировать" class="btn btn-success"><i class="fa fa-edit"></i></a></span>
+    <br />
+    <br />
+    <table class="controlsTable table-striped" width="100%">
+        <tr>
+            <td class="col-sm-3"><b>Дата начала фандрайзинга:</b></td>
+            <td class="col-sm-3">@Model.FundrisingStartDate</td>
+
+            <td class="col-sm-3"><b>Статус УК:</b></td>
+            <td class="col-sm-3">@Model.UKStatus</td>
+        </tr>
+        <tr>
+            <td class="col-sm-3"><b>Общее число портфельных фондов:</b></td>
+            <td class="col-sm-3">@Model.TotalPortfolioFunds</td>
+
+            <td class="col-sm-3"><b>Текущее число портфельных фондов:</b></td>
+            <td class="col-sm-3">@Model.CurrentPortfolioFunds</td>
+        </tr>
+        <tr>
+            <td class="col-sm-3"><b>Общий капитал портфельных фондов:</b></td>
+            <td class="col-sm-3">@Model.TotalCapitalOfPortfolioFunds</td>
+
+            <td class="col-sm-3"><b>Текущий капитал проинвестированных фондов:</b></td>
+            <td class="col-sm-3">@Model.CurrentCapitalOfInvestmentFunds</td>
+        </tr>
+        <tr>
+            <td class="col-sm-3"><b>Общее число проинвестированных проектов:</b></td>
+            <td class="col-sm-3">@Model.CountOfInvesmentProjects</td>
+
+            <td class="col-sm-3"><b>Примеры инвесторов:</b></td>
+            <td class="col-sm-3">@Html.Raw(Model.SampleInvestors)</td>
+        </tr>
+        <tr>
+            <td class="col-sm-3"><b>Географическая охват:</b></td>
+            <td class="col-sm-3">@Model.GeographicalStrategy</td>
+
+            <td class="col-sm-3"><b>Географический фокус:</b></td>
+            <td class="col-sm-3">@Model.GeographicalCut</td>
+        </tr>
+        <tr>
+            <td class="col-sm-3"><b>Региональный фокус:</b></td>
+            <td class="col-sm-3">@Html.Raw(Model.RegionalFocus)</td>
+
+            <td class="col-sm-3"></td>
+            <td class="col-sm-3"></td>
+        </tr>
+    </table>
+
+
+    <br />
+    <h4>Фонды под управлением</h4>
+    <br />
+    <span style="float:left;"><a href="javascript:editManagementFundDetail(0,'Добавление фонда под управлением')" class="btn btn-success"><i class="fa fa-plus"></i></a></span>
+    <br />
+    <table id="fundsUnderControl" class="table table-hover table-striped order-column" style="width:95%; cursor:pointer">
+        <thead>
+            <tr>
+                <th class="sorting_asc">Название</th>
+                <th class="sorting">Год основания</th>
+                <th class="sorting">Тип</th>
+                <th class="sorting">Статус</th>
+                <th class="sorting">Целевой размер</th>
+                <th class="sorting">Размер закрытия</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.FundsUnderControl)
+            {
+                <tr>
+                    <td><a href="/details/fund/@item.id/">@item.Name</a></td>
+                    <td>@item.Year</td>
+                    <td>@item.Type</td>
+                    <td>@item.Status</td>
+                    <td>@item.TargetValue</td>
+                    <td>@item.ClosingValue</td>
+                    <td><a href="javascript:editManagementFundDetail(@item.id,'Редактирование фонда под управлением')" title="Редактировать" class="btn btn-success btn-circle"><i class="fa fa-edit"></i></a></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <script type="text/javascript">
+
+        var table = $('#fundsUnderControl').dataTable({
+            "dom": '<"H"l<"toolbar">>rtip',
+            "order": [0, 'asc'],
+            "paging": "false",
+            "info": "false",
+            "bLengthChange": false,
+            "oLanguage": {
+                "sSearch": "Фильтр:",
+                "sInfo": "Отображаются строки с _START_ по _END_ из _TOTAL_",
+                "oPaginate": {
+                    "sFirst": "В начало",
+                    "sLast": "В конец",
+                    "sNext": "Следующая",
+                    "sPrevious": "Предыдущая"
+                }
+            }
+        });
+    </script>
+
+
+    <br />
+    <h4>Закрытие фонды</h4>
+    <br />
+    <span style="float:left;"><a href="javascript:editClosedFundDetail(0,'Добавление закрытия фонда')" class="btn btn-success"><i class="fa fa-plus"></i></a></span>
+    <br />
+    <table id="closedFunds" class="table table-hover table-striped order-column" style="width:95%; cursor:pointer">
+        <thead>
+            <tr>
+                <th class="sorting_asc">Название</th>
+                <th class="sorting">Год закрытия</th>
+                <th class="sorting">Тип</th>
+                <th class="sorting">Статус</th>
+                <th class="sorting">Целевой размер</th>
+                <th class="sorting">Размер закрытия</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.ClosedFunds)
+            {
+                <tr>
+                    <td>@item.Name</td>
+                    <td>@item.Year</td>
+                    <td>@item.Type</td>
+                    <td>@item.Status</td>
+                    <td>@item.TargetValue</td>
+                    <td>@item.ClosingValue</td>
+                    <td><a href="javascript:editClosedFundDetail(@item.id,'Редактирование закрытия фонда')" title="Редактировать" class="btn btn-success btn-circle"><i class="fa fa-edit"></i></a></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <script type="text/javascript">
+
+        var table = $('#closedFunds').dataTable({
+            "dom": '<"H"l<"toolbar">>rtip',
+            "order": [0, 'asc'],
+            "paging": "false",
+            "info": "false",
+            "bLengthChange": false,
+            "oLanguage": {
+                "sSearch": "Фильтр:",
+                "sInfo": "Отображаются строки с _START_ по _END_ из _TOTAL_",
+                "oPaginate": {
+                    "sFirst": "В начало",
+                    "sLast": "В конец",
+                    "sNext": "Следующая",
+                    "sPrevious": "Предыдущая"
+                }
+            }
+        });
+    </script>
+
+    <br />
+    <h4>Соинвесторы</h4>
+    <br />
+    <span style="float:left;"><a href="javascript:editMutualInvestorDetail(0,'Добавление соинвестора')" class="btn btn-success"><i class="fa fa-plus"></i></a></span>
+    <br />
+    <table id="fellowInvestors" class="table table-hover table-striped order-column" style="width:95%; cursor:pointer">
+        <thead>
+            <tr>
+                <th class="sorting_asc">Название</th>
+                <th class="sorting">Число инвестиций</th>
+                <th class="sorting">Совокупный объем инвестиций</th>
+                <th class="sorting">Перечень компаний</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.mutualInvestors)
+            {
+                <tr>
+                    <td>@item.Name</td>
+                    <td>@item.InvesmentCount</td>
+                    <td>@item.TotalInvestments</td>
+                    <td>@item.CompnayList</td>
+                    <td><a href="javascript:editMutualInvestorDetail(@item.id,'Редактирование соинвестора')" title="Редактировать" class="btn btn-success btn-circle"><i class="fa fa-edit"></i></a></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <script type="text/javascript">
+
+        var table = $('#fellowInvestors').dataTable({
+            "dom": '<"H"l<"toolbar">>rtip',
+            "order": [0, 'asc'],
+            "paging": "false",
+            "info": "false",
+            "bLengthChange": false,
+            "oLanguage": {
+                "sSearch": "Фильтр:",
+                "sInfo": "Отображаются строки с _START_ по _END_ из _TOTAL_",
+                "oPaginate": {
+                    "sFirst": "В начало",
+                    "sLast": "В конец",
+                    "sNext": "Следующая",
+                    "sPrevious": "Предыдущая"
+                }
+            }
+        });
+    </script>
+
+    <br />
+    <h4>Партнеры</h4>
+    <br />
+    <b>Агент по размещению</b>
+    <br />
+    <span style="float:left;"><a href="javascript:editAgentDetail(0,'Добавление агента по размещению')" class="btn btn-success"><i class="fa fa-plus"></i></a></span>
+    <br />
+    <table id="listingAgent" class="table table-hover table-striped order-column" style="width:95%; cursor:pointer">
+        <thead>
+            <tr>
+                <th class="sorting_asc">Название</th>
+                <th class="sorting">Отрасль</th>
+                <th class="sorting">Расположение</th>
+                <th class="sorting">Год основания</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.ListingAgent)
+            {
+                <tr>
+                    <td>@item.Name</td>
+                    <td>@item.Otrasl</td>
+                    <td>@item.Place</td>
+                    <td>@item.Year</td>
+                    <td><a href="javascript:editAgentDetail(@item.id,'Редактирование агента по размещению')" title="Редактировать" class="btn btn-success btn-circle"><i class="fa fa-edit"></i></a></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <script type="text/javascript">
+
+        var table = $('#listingAgent').dataTable({
+            "dom": '<"H"l<"toolbar">>rtip',
+            "order": [0, 'asc'],
+            "paging": "false",
+            "info": "false",
+            "bLengthChange": false,
+            "oLanguage": {
+                "sSearch": "Фильтр:",
+                "sInfo": "Отображаются строки с _START_ по _END_ из _TOTAL_",
+                "oPaginate": {
+                    "sFirst": "В начало",
+                    "sLast": "В конец",
+                    "sNext": "Следующая",
+                    "sPrevious": "Предыдущая"
+                }
+            }
+        });
+    </script>
+
+    <br />
+    <b>Юридические консультанты по формированию фондов</b>
+    <br />
+    <span style="float:left;"><a href="javascript:editConsultantDetail(0,'Добавление юридического консультанта')" class="btn btn-success"><i class="fa fa-plus"></i></a></span>
+    <br />
+    <table id="lawConsultants" class="table table-hover table-striped order-column" style="width:95%; cursor:pointer">
+        <thead>
+            <tr>
+                <th class="sorting_asc">Название</th>
+                <th class="sorting">Отрасль</th>
+                <th class="sorting">Расположение</th>
+                <th class="sorting">Год основания</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.LawConsultants)
+            {
+                <tr>
+                    <td>@item.Name</td>
+                    <td>@item.Otrasl</td>
+                    <td>@item.Place</td>
+                    <td>@item.Year</td>
+                    <td><a href="javascript:editConsultantDetail(@item.id,'Редактирование юридического консультанта')" title="Редактировать" class="btn btn-success btn-circle"><i class="fa fa-edit"></i></a></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <script type="text/javascript">
+
+        var table = $('#lawConsultants').dataTable({
+            "dom": '<"H"l<"toolbar">>rtip',
+            "order": [0, 'asc'],
+            "paging": "false",
+            "info": "false",
+            "bLengthChange": false,
+            "oLanguage": {
+                "sSearch": "Фильтр:",
+                "sInfo": "Отображаются строки с _START_ по _END_ из _TOTAL_",
+                "oPaginate": {
+                    "sFirst": "В начало",
+                    "sLast": "В конец",
+                    "sNext": "Следующая",
+                    "sPrevious": "Предыдущая"
+                }
+            }
+        });
+    </script>
+
+    <br />
+    <b>Аудитор</b>
+    <br />
+    <span style="float:left;"><a href="javascript:editAuditorDetail(0,'Добавление аудитора')" class="btn btn-success"><i class="fa fa-plus"></i></a></span>
+    <br />
+    <table id="auditor" class="table table-hover table-striped order-column" style="width:95%; cursor:pointer">
+        <thead>
+            <tr>
+                <th class="sorting_asc">Название</th>
+                <th class="sorting">Отрасль</th>
+                <th class="sorting">Расположение</th>
+                <th class="sorting">Год основания</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Auditor)
+            {
+                <tr>
+                    <td>@item.Name</td>
+                    <td>@item.Otrasl</td>
+                    <td>@item.Place</td>
+                    <td>@item.Year</td>
+                    <td><a href="javascript:editAuditorDetail(@item.id,'Редактирование аудитора')" title="Редактировать" class="btn btn-success btn-circle"><i class="fa fa-edit"></i></a></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <script type="text/javascript">
+
+        var table = $('#auditor').dataTable({
+            "dom": '<"H"l<"toolbar">>rtip',
+            "order": [0, 'asc'],
+            "paging": "false",
+            "info": "false",
+            "bLengthChange": false,
+            "oLanguage": {
+                "sSearch": "Фильтр:",
+                "sInfo": "Отображаются строки с _START_ по _END_ из _TOTAL_",
+                "oPaginate": {
+                    "sFirst": "В начало",
+                    "sLast": "В конец",
+                    "sNext": "Следующая",
+                    "sPrevious": "Предыдущая"
+                }
+            }
+        });
+    </script>
+
+    <br />
+    <b>Поставщики услуг</b>
+    <br />
+    <span style="float:left;"><a href="javascript:editSupplierDetail(0,'Добавление поставщика услуг')" class="btn btn-success"><i class="fa fa-plus"></i></a></span>
+    <br />
+    <table id="postavshiki" class="table table-hover table-striped order-column" style="width:95%; cursor:pointer">
+        <thead>
+            <tr>
+                <th class="sorting_asc">Название</th>
+                <th class="sorting">Отрасль</th>
+                <th class="sorting">Расположение</th>
+                <th class="sorting">Год основания</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Postavshiki)
+            {
+                <tr>
+                    <td>@item.Name</td>
+                    <td>@item.Otrasl</td>
+                    <td>@item.Place</td>
+                    <td>@item.Year</td>
+                    <td><a href="javascript:editSupplierDetail(@item.id,'Редактирование поставщика услуг')" title="Редактировать" class="btn btn-success btn-circle"><i class="fa fa-edit"></i></a></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <script type="text/javascript">
+
+        var table = $('#postavshiki').dataTable({
+            "dom": '<"H"l<"toolbar">>rtip',
+            "order": [0, 'asc'],
+            "paging": "false",
+            "info": "false",
+            "bLengthChange": false,
+            "oLanguage": {
+                "sSearch": "Фильтр:",
+                "sInfo": "Отображаются строки с _START_ по _END_ из _TOTAL_",
+                "oPaginate": {
+                    "sFirst": "В начало",
+                    "sLast": "В конец",
+                    "sNext": "Следующая",
+                    "sPrevious": "Предыдущая"
+                }
+            }
+        });
+    </script>
+
+    <h4>Инвестиции фондов</h4>
+    <br />
+    <span style="float:left;"><a href="javascript:editFundInvestmentsDetail(0,'Добавление инвестиции фондов')" class="btn btn-success"><i class="fa fa-plus"></i></a></span>
+    <br />
+    <table id="fundInvesting" class="table table-hover table-striped order-column" style="width:95%; cursor:pointer">
+        <thead>
+            <tr>
+                <th class="sorting_asc">Название компании</th>
+                <th class="sorting">Название фонда</th>
+                <th class="sorting">Год инвестиции</th>
+                <th class="sorting">Объем сделки</th>
+                <th class="sorting">Отрасль</th>
+                <th class="sorting">Страна</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.fundInvestments)
+            {
+            <tr>
+                <td>
+                    @if (item.id > 999)
+                    {
+                        @item.CompanyName
+                    }
+                    else
+                    {
+                        <a href="/details/investment/@item.id">@item.CompanyName</a>
+                    }
+                </td>
+                <td>@item.FundName</td>
+                <td>@item.InvesmentYear</td>
+                <td>@item.Volume</td>
+                <td>@item.Otrasl</td>
+                <td>@item.Country</td>
+                <td><a href="javascript:editFundInvestmentsDetail(@item.id,'Редактирование инвестиции фондов')" title="Редактировать" class="btn btn-success btn-circle"><i class="fa fa-edit"></i></a></td>
+            </tr>
+            }
+        </tbody>
+    </table>
+    <script type="text/javascript">
+
+        var table = $('#fundInvesting').dataTable({
+            "dom": '<"H"l<"toolbar">>rtip',
+            "order": [0, 'asc'],
+            "paging": "false",
+            "info": "false",
+            "bLengthChange": false,
+            "oLanguage": {
+                "sSearch": "Фильтр:",
+                "sInfo": "Отображаются строки с _START_ по _END_ из _TOTAL_",
+                "oPaginate": {
+                    "sFirst": "В начало",
+                    "sLast": "В конец",
+                    "sNext": "Следующая",
+                    "sPrevious": "Предыдущая"
+                }
+            }
+        });
+    </script>
+
+
+    <h4>Выходы фондов</h4>
+    <br />
+    <span style="float:left;"><a href="javascript:editFundExitsDetail(0,'Добавление выхода фондов')" class="btn btn-success"><i class="fa fa-plus"></i></a></span>
+    <br />
+    <table id="fundExits" class="table table-hover table-striped order-column" style="width:95%; cursor:pointer">
+        <thead>
+            <tr>
+                <th class="sorting_asc">Название компании</th>
+                <th class="sorting">Название фонда</th>
+                <th class="sorting">Год выхода</th>
+                <th class="sorting">Объем выхода</th>
+                <th class="sorting">Способ выхода</th>
+                <th class="sorting">Тип выхода</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.fundExits)
+            {
+                <tr>
+                    <td>@item.CompanyName</td>
+                    <td>@item.FundName</td>
+                    <td>@item.ExitYear</td>
+                    <td>@item.ExitVolume</td>
+                    <td>@item.Sposob</td>
+                    <td>@item.Type</td>
+                    <td><a href="javascript:editFundExitsDetail(@item.id,'Редактирование выхода фондов')" title="Редактировать" class="btn btn-success btn-circle"><i class="fa fa-edit"></i></a></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <script type="text/javascript">
+
+        var table = $('#fundExits').dataTable({
+            "dom": '<"H"l<"toolbar">>rtip',
+            "order": [0, 'asc'],
+            "paging": "false",
+            "info": "false",
+            "bLengthChange": false,
+            "oLanguage": {
+                "sSearch": "Фильтр:",
+                "sInfo": "Отображаются строки с _START_ по _END_ из _TOTAL_",
+                "oPaginate": {
+                    "sFirst": "В начало",
+                    "sLast": "В конец",
+                    "sNext": "Следующая",
+                    "sPrevious": "Предыдущая"
+                }
+            }
+        });
+    </script>
+
+    <h4>Новости</h4>
+    <br />
+    <span style="float:left;"><a href="javascript:editNewsDetail(0,'Добавление новости')" class="btn btn-success"><i class="fa fa-plus"></i></a></span>
+    <br />
+    <table id="newslist" class="table table-hover table-striped order-column" style="width:95%; cursor:pointer">
+        <thead>
+            <tr>
+                <th class="sorting_asc">Заголовок</th>
+                <th class="sorting">URL</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.news)
+            {
+                <tr>
+                    <td>@item.Header</td>
+                    <td><a href="@item.Url">@item.Url</a></td>
+                    <td><a href="javascript:editNewsDetail(@item.id,'Редактирование новости')" title="Редактировать" class="btn btn-success btn-circle"><i class="fa fa-edit"></i></a></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<script type="text/javascript">
+
+    var table = $('#newslist').dataTable({
+        "dom": '<"H"l<"toolbar">>rtip',
+        "order": [0, 'asc'],
+        "paging": "false",
+        "info": "false",
+        "bLengthChange": false,
+        "oLanguage": {
+            "sSearch": "Фильтр:",
+            "sInfo": "Отображаются строки с _START_ по _END_ из _TOTAL_",
+            "oPaginate": {
+                "sFirst": "В начало",
+                "sLast": "В конец",
+                "sNext": "Следующая",
+                "sPrevious": "Предыдущая"
+            }
+        }
+    });
+</script>
+
+<script>
+    function editBossDetail(id,header) {
+        var linkPath = '/cabinet/uk/@Model.id/editboss/?objId='+id;
+        $.get(linkPath, function (data) {
+            $('#largeModalTitle').html(header);
+            $('#largeModalBody').html(data);
+            $('#largeModal').modal('show');
+        });
+    }
+
+    function editEmployeeDetail(id,header) {
+        var linkPath = '/cabinet/uk/@Model.id/editemployee/?objId='+id;
+        $.get(linkPath, function (data) {
+            $('#largeModalTitle').html(header);
+            $('#largeModalBody').html(data);
+            $('#largeModal').modal('show');
+        });
+    }
+
+    function editNewsDetail(id,header) {
+        var linkPath = '/cabinet/uk/@Model.id/editnews/?objId='+id;
+        $.get(linkPath, function (data) {
+            $('#largeModalTitle').html(header);
+            $('#largeModalBody').html(data);
+            $('#largeModal').modal('show');
+        });
+    }
+
+    function editFundExitsDetail(id,header) {
+        var linkPath = '/cabinet/uk/@Model.id/editfundexits/?objId='+id;
+        $.get(linkPath, function (data) {
+            $('#largeModalTitle').html(header);
+            $('#largeModalBody').html(data);
+            $('#largeModal').modal('show');
+        });
+    }
+
+    function editFundInvestmentsDetail(id,header) {
+        var linkPath = '/cabinet/uk/@Model.id/editfundinvestments/?objId='+id;
+        $.get(linkPath, function (data) {
+            $('#largeModalTitle').html(header);
+            $('#largeModalBody').html(data);
+            $('#largeModal').modal('show');
+        });
+    }
+
+    function editSupplierDetail(id,header) {
+        var linkPath = '/cabinet/uk/@Model.id/editsupplier/?objId='+id;
+        $.get(linkPath, function (data) {
+            $('#largeModalTitle').html(header);
+            $('#largeModalBody').html(data);
+            $('#largeModal').modal('show');
+        });
+    }
+
+    function editAuditorDetail(id,header) {
+        var linkPath = '/cabinet/uk/@Model.id/editauditor/?objId='+id;
+        $.get(linkPath, function (data) {
+            $('#largeModalTitle').html(header);
+            $('#largeModalBody').html(data);
+            $('#largeModal').modal('show');
+        });
+    }
+
+    function editConsultantDetail(id,header) {
+        var linkPath = '/cabinet/uk/@Model.id/editconsultant/?objId='+id;
+        $.get(linkPath, function (data) {
+            $('#largeModalTitle').html(header);
+            $('#largeModalBody').html(data);
+            $('#largeModal').modal('show');
+        });
+    }
+
+    function editAgentDetail(id,header) {
+        var linkPath = '/cabinet/uk/@Model.id/editagent/?objId='+id;
+        $.get(linkPath, function (data) {
+            $('#largeModalTitle').html(header);
+            $('#largeModalBody').html(data);
+            $('#largeModal').modal('show');
+        });
+    }
+
+     function editMutualInvestorDetail(id,header) {
+        var linkPath = '/cabinet/uk/@Model.id/editmutualinvestor/?objId='+id;
+        $.get(linkPath, function (data) {
+            $('#largeModalTitle').html(header);
+            $('#largeModalBody').html(data);
+            $('#largeModal').modal('show');
+        });
+    }
+
+     function editClosedFundDetail(id,header) {
+        var linkPath = '/cabinet/uk/@Model.id/editclosedfund/?objId='+id;
+        $.get(linkPath, function (data) {
+            $('#largeModalTitle').html(header);
+            $('#largeModalBody').html(data);
+            $('#largeModal').modal('show');
+        });
+    }
+
+     function editManagementFundDetail(id,header) {
+        var linkPath = '/cabinet/uk/@Model.id/editmanagementfund/?objId='+id;
+        $.get(linkPath, function (data) {
+            $('#largeModalTitle').html(header);
+            $('#largeModalBody').html(data);
+            $('#largeModal').modal('show');
+        });
+    }
+</script>

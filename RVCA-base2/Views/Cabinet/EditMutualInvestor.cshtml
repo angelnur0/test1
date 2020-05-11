@@ -1,0 +1,50 @@
+﻿@using RVCA_base2.Models;
+@model MutualInvestor
+@{
+    Layout = null;
+}
+
+<form action="@ViewData["SubmitUrl"].ToString()" method="post">
+    <div class="row">
+        <div class="col-md-6">
+            <b>Название</b>
+        </div>
+        <div class="col-md-6">
+            <b>Число инвестиций</b>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <input type="text" name="Name" id="Name" value="@Model.Name" style="width:100%" />
+        </div>
+        <div class="col-md-6">
+            <input type="text" name="InvesmentCount" id="InvesmentCount" value="@Model.InvesmentCount" style="width:100%" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <b>Совокупный объем инвестиций</b>
+        </div>
+        <div class="col-md-6">
+            <b>Перечень компаний</b>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <input type="text" name="TotalInvestments" id="TotalInvestments" value="@Model.TotalInvestments" style="width:100%" />
+        </div>
+        <div class="col-md-6">
+            <input type="text" name="CompnayList" id="CompnayList" value="@Model.CompnayList" style="width:100%" />
+        </div>
+    </div>
+    <br />
+    <center>
+        <input type="submit" value="Сохранить" class="btn btn-info"  onclick="testVersionReminder();"/>
+    </center>
+</form>
+
+<script>
+    function testVersionReminder() {
+        alert('Внесенные изменения в режиме Прототипа - не сохраняются!');
+    }
+</script>

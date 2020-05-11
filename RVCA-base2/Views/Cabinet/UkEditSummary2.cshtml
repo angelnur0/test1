@@ -1,0 +1,49 @@
+﻿@using RVCA_base2.Models;
+@model CabinetUkData
+@{
+    ViewBag.Title = "Личный кабинет УК - Редактирование Summary";
+}
+<style>
+    table tr {
+        padding-bottom: 5px;
+    }
+
+    @@media screen and (max-width: 650px) {
+
+        table.controlsTable tr {
+            display: block !important;
+        }
+    }
+</style>
+<form action="/cabinet/uk/@Model.id/" method="post">
+    <table class="controlsTable" width="100%">       
+        <tr>
+            <td class="col-sm-3">Фонды под управлением:</td>
+            <td class="col-sm-3"><input type="text" name="FundsUnderContolCount" id="FundsUnderContolCount" value="@Model.FundsUnderContolCount" /></td>
+
+            <td class="col-sm-3">Активы под управленим:</td>
+            <td class="col-sm-3"><input type="text" name="ActivesUnderControl" id="ActivesUnderControl" value="@Model.ActivesUnderControl" /></td>
+        </tr>
+        <tr>
+            <td class="col-sm-3">Географический охват:</td>
+            <td class="col-sm-3"><input type="text" name="Geography" id="Geography" value="@Model.Geography" /></td>
+
+            <td class="col-sm-3">Географический фокус:</td>
+            <td class="col-sm-3"><input type="text" name="GeographyFocus" id="GeographyFocus" value="@Model.GeographyFocus" /></td>
+        </tr>
+        <tr>
+            <td class="col-sm-3">Источники капитала:</td>
+            <td class="col-sm-3"><input type="text" name="CapitalSources" id="CapitalSources" value="@Model.CapitalSources" /></td>
+            <td class="col-sm-3"></td>
+            <td class="col-sm-3"></td>
+        </tr>
+    </table>
+    <input type="submit" value="Сохранить" class="btn btn-info" onclick="testVersionReminder();"  />
+</form>
+
+<script>
+        function testVersionReminder()
+        {
+            alert('Внесенные изменения в режиме Прототипа - не сохраняются!');
+        }
+</script>

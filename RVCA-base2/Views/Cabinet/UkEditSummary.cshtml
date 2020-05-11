@@ -1,0 +1,64 @@
+﻿@using RVCA_base2.Models;
+@model CabinetUkData
+@{
+    ViewBag.Title = "Личный кабинет УК - Редактирование Summary";
+}
+<style>
+    table tr {
+        padding-bottom: 5px;
+    }
+
+    @@media screen and (max-width: 650px) {
+
+        table.controlsTable tr {
+            display: block !important;
+        }
+    }
+</style>
+<form action="/cabinet/uk/@Model.id/editsummary/" method="post">
+    <table class="controlsTable" width="100%">
+        <tr>
+            <td class="col-sm-3">Название:</td>
+            <td class="col-sm-3"><input type="text" name="Title" id="Title" value="@Model.Title" /></td>
+
+            <td class="col-sm-3">Описание:</td>
+            <td class="col-sm-3"><input type="text" name="Description" id="Description" value="@Model.Description" /></td>
+        </tr>
+        <tr>
+            <td class="col-sm-3">Юридическое название:</td>
+            <td class="col-sm-3"><input type="text" name="LegalName" id="LegalName" value="@Model.LegalName" /></td>
+
+            <td class="col-sm-3">Юрисдикция:</td>
+            <td class="col-sm-3"><input type="text" name="Jurisdiction" id="Jurisdiction" value="@Model.Jurisdiction" /></td>
+        </tr>
+        <tr>
+            <td class="col-sm-3">Тип фонда:</td>
+            <td class="col-sm-3"><input type="text" name="FundType" id="FundType" value="@Model.FundType" /></td>
+
+            <td class="col-sm-3">Статус УК:</td>
+            <td class="col-sm-3"><input type="text" name="UKStatus" id="UKStatus" value="@Model.UKStatus" /></td>
+        </tr>
+        <tr>
+            <td class="col-sm-3"><b>Сайт:</b></td>
+            <td class="col-sm-3"><input type="text" name="UKStatus" id="UKStatus" value="@Model.WebSite" /></td>
+
+            <td class="col-sm-3">Инвестиционная стратегия:</td>
+            <td class="col-sm-3"><input type="text" name="UKStatus" id="UKStatus" value="@Model.InvestStrategy" /></td>
+        </tr>
+        <tr>
+            <td class="col-sm-3">Год основания:</td>
+            <td class="col-sm-3"><input type="text" name="FoundationDate" id="FoundationDate" value="@Model.FoundationDate" /></td>
+
+            <td class="col-sm-3"></td>
+            <td class="col-sm-3"></td>
+        </tr>
+    </table>
+    <input type="submit" value="Сохранить" class="btn btn-info" onclick="testVersionReminder();"  />
+</form>
+
+<script>
+        function testVersionReminder()
+        {
+            alert('Внесенные изменения в режиме Прототипа - не сохраняются!');
+        }
+</script>

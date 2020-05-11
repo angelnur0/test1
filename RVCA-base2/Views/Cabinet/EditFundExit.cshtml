@@ -1,0 +1,63 @@
+﻿@using RVCA_base2.Models;
+@model FundExitsListItem
+@{
+    Layout = null;
+}
+
+<form action="@ViewData["SubmitUrl"].ToString()" method="post">
+    <div class="row">
+        <div class="col-md-4">
+            <b>Название компании</b>
+        </div>
+        <div class="col-md-4">
+            <b>Название фонда</b>
+        </div>
+        <div class="col-md-4">
+            <b>Год выхода</b>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <input type="text" name="companyname" id="companyname" value="@Model.CompanyName" style="width:100%" />
+        </div>
+        <div class="col-md-4">
+            <input type="text" name="fundname" id="fundname" value="@Model.FundName" style="width:100%" />
+        </div>
+        <div class="col-md-4">
+            <input type="text" name="exitdate" id="exitdate" value="@Model.ExitYear" style="width:100%" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <b>Объем выхода</b>
+        </div>
+        <div class="col-md-4">
+            <b>Способ выхода</b>
+        </div>
+        <div class="col-md-4">
+            <b>Тип выхода</b>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <input type="text" name="exitvolume" id="exitvolume" value="@Model.ExitVolume" style="width:100%" />
+        </div>
+        <div class="col-md-4">
+            <input type="text" name="Sposob" id="Sposob" value="@Model.Sposob" style="width:100%" />
+        </div>
+        <div class="col-md-4">
+            <input type="text" name="type" id="type" value="@Model.Type" style="width:100%" />
+        </div>
+    </div>
+    <br />
+    <center>
+        <input type="submit" value="Сохранить" class="btn btn-info"  onclick="testVersionReminder();"/>
+    </center>
+</form>
+
+<script>
+    function testVersionReminder()
+    {
+        alert('Внесенные изменения в режиме Прототипа - не сохраняются!');
+    }
+</script>
