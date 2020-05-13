@@ -16,14 +16,9 @@ namespace ExcelWorker.Excel_model_v3
         {
             settings = new StatPageSettings(sheet);
 
-            var excelTable = sheet.Tables.Where(x => x.Address.Start.Row >=3).FirstOrDefault();
-            //if (sheet.Name == "data-i")
-            //    excelTable = sheet.Tables.Where(x => x.Address.Start.Row >= 3).Skip(1).Take(1).FirstOrDefault();
-
+            var excelTable = sheet.Tables.Where(x => x.Address.Start.Row >= 3).FirstOrDefault();
+            
             table = new RowDataTable(excelTable);
         }
-
-    
-
     }
 }

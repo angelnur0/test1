@@ -280,8 +280,8 @@
     <Content Include="fonts\fontawesome-webfont.ttf" />
     <Content Include="fonts\fontawesome-webfont.woff" />
     <Content Include="fonts\FontAwesome.otf" />
+    <Content Include="Files\test_new.xlsx" />
     <Content Include="Files\test.xlsx" />
-    <Content Include="Files\test_old.xlsx" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\data-table.js" />
@@ -365,16 +365,6 @@
     <Content Include="Views\Cabinet\UKView.cshtml" />
     <Content Include="Views\Cabinet\UkEditSummary.cshtml" />
     <Content Include="Views\Cabinet\UkEditDetails.cshtml" />
-    <Content Include="Views\Cabinet\UkEditMainDetails.cshtml" />
-    <Content Include="Views\Cabinet\EditContact.cshtml" />
-    <Content Include="Views\Cabinet\EditNews.cshtml" />
-    <Content Include="Views\Cabinet\EditFundExit.cshtml" />
-    <Content Include="Views\Cabinet\EditFundInvestments.cshtml" />
-    <Content Include="Views\Cabinet\EditPartnerData.cshtml" />
-    <Content Include="Views\Cabinet\EditMutualInvestor.cshtml" />
-    <Content Include="Views\Cabinet\EditClosedFund.cshtml" />
-    <Content Include="Views\Cabinet\EditManagementFund.cshtml" />
-    <Content Include="Views\Cabinet\UkEditSummary2.cshtml" />
     <Content Include="Views\Stat\Funds.cshtml" />
     <Content Include="Views\Stat\Exits.cshtml" />
     <Content Include="Views\Stat\Mobile.cshtml" />

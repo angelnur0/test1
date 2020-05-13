@@ -59,7 +59,6 @@ namespace RVCA_base2.Controllers
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
-            FundData data = MyExcel.GetFundDataFromDataSource(1);
             ViewBag.ReturnUrl = returnUrl;
             return View();
         }

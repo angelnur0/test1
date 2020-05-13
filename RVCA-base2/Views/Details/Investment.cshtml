@@ -32,24 +32,12 @@ else
     <h3>Детали инвестиции</h3>
     <table class="table table-striped">
         <tr><td>Описание сделки</td><td>@Model.Description</td></tr>
-        <tr><td>Дата сделки</td><td>@Model.Date</td></tr>
-        <tr><td>Дата анонсирования сделки</td><td>@Model.AnouncementDate</td></tr>
         <tr><td>Объем сделки</td><td>@Model.InvestmentVolume</td></tr>
         <tr><td>Стадия развития</td><td>@Model.Stage</td></tr>
         <tr><td>Номер раунда</td><td>@Model.Round</td></tr>
-        <tr><td>Тип сделки</td><td>@Model.DealType</td></tr>
-        <tr><td>Инвестиции в акционерный капитал</td><td>@Model.InvestmentInCapital</td></tr>
-        <tr><td>Приобретаемая доля</td><td>@Model.AquiredShare</td></tr>
-        <tr><td>Совокупная доля инвестора</td><td>@Model.TotalInvestorShare</td></tr>
-        <tr><td>Дробление акционерного капитала (stock split)</td><td>@Model.StockSplit</td></tr>
-        <tr><td>Первоначальная оценка стоимости (Pre-money Valuation)</td><td>@Model.PreMoneyValuation</td></tr>
-        <tr><td>Стоимость компании после получения инвестиции (Post Valuation)</td><td>@Model.PostValuation</td></tr>
-        <tr><td>Оценка объема сделки</td><td>@Model.DealVolume</td></tr>
-        <tr><td>Статус сделки</td><td>@Model.DealStatus</td></tr>
-        <tr><td>Всего проинвестировано на момент сделки</td><td>@Model.TotalInvested</td></tr>
+        <tr><td>PEVC</td><td>@Model.DealType</td></tr>
         <tr><td>Синдицированная</td><td>@Model.Sindicated</td></tr>
         <tr><td>Follow-on</td><td>@Model.FollowOn</td></tr>
-        <tr><td>Поставщики услуг</td><td>@Model.Suppliers</td></tr>
     </table>
 
     <h4>Подробная информация</h4>
@@ -60,33 +48,15 @@ else
             <tr>
                 <th>Наименование инвестора</th>
                 <th>Тип инвестора</th>
-                <th>Расположение инвестора</th>
             </tr>
         </thead>
         <tbody>
 
             <tr>
-                <td><a href="/details/fund/@Model.fund_id/">@Model.InvestorName</a></td>
+                <td>@Model.InvestorName</td>
                 <td>@Model.InvestorType</td>
-                <td>@Model.InvestorLocation</td>
             </tr>            
 
-        </tbody>
-    </table>
-
-    <h5>Продавцы</h5>
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th>Наименование продавца</th>
-                <th>Расположение продавца</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>@Model.SellerName</td>
-                <td>@Model.SellerLocation</td>
-            </tr>
         </tbody>
     </table>
 }

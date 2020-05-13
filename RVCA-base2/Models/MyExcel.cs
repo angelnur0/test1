@@ -100,68 +100,24 @@ namespace RVCA_base.Models
             {
                 id = int.Parse(ukAllData[2].ToString()),
                 Title = ukAllData[3].ToString(),
-                Jurisdiction = ukAllData[32].ToString(),
-                WebSite = ukAllData[28].ToString(),
-                InvestorType = ukAllData[5].ToString(),
+                Jurisdiction = ukAllData[31].ToString(),
+                WebSite = ukAllData[27].ToString(),
+                InvestorType = ukAllData[4].ToString(),
                 FundType = ukAllData[5].ToString(),
                 FoundationDate = ukAllData[6].ToString(),
-                Geography = ukAllData[19].ToString().Replace(";", "<br/>"),
-                GeographyFocus = ukAllData[20].ToString().Replace(";", "<br/>"),
-                PrefferedRegions = ukAllData[21].ToString().Replace(";", "<br/>"),
-                IndustrialFocus = ukAllData[22].ToString().Replace(";", "<br/>"),
-                StageFocus = ukAllData[23].ToString().Replace(";", "<br/>"),
-                TotalInvestmentsCount = ukAllData[24].ToString(),
-                CurrentPortfolio = ukAllData[25].ToString(),
-                InvestmentsDuringYear = ukAllData[26].ToString(),
-                Exits = ukAllData[27].ToString(),
-                MedianRoundVolume = ukAllData[28].ToString(),
-                MedianMark = ukAllData[29].ToString(),
-                NumberOfProfessionals = ukAllData[30].ToString(),
-                PlannedInvestments = ukAllData[31].ToString(),
-                PlannedInvestmentsPerCompany = ukAllData[32].ToString(),
-                PEVC_FundType = ukAllData[33].ToString(),
-                WithGovernment = ukAllData[34].ToString(),
-                SeedOrNot = ukAllData[35].ToString(),
-                IKTOrNot= ukAllData[36].ToString(),
-                CorpOrNot= "",//fix it later
-
-                Agent = ukAllData[37].ToString(),
-                LawConsultants = ukAllData[38].ToString(),
-                Auditor = ukAllData[39].ToString(),
-                Administrator = ukAllData[40].ToString(),
-                Etics = ukAllData[41].ToString(),
-                HeadOfficeCountry = ukAllData[42].ToString(),
-                HeadOfficeAddress = ukAllData[44].ToString(),
-                HeadOfficeJurisdiction = ukAllData[43].ToString(),
-                AlternateOfficeAddress = ukAllData[45].ToString(),
-                Url = ukAllData[46].ToString(),
-                Email = ukAllData[47].ToString(),
-                Phone = ukAllData[48].ToString(),
-                MainDetails_ManagingCompany = ukAllData[57].ToString(),
-                MainDetails_FundValue = ukAllData[58].ToString(),
-                //MainDetails_DateOfCommitmentFixing { get; set; }
-                MainDetails_FundType = ukAllData[59].ToString(),
-                MainDetails_FinanceSources = ukAllData[60].ToString().Replace(";", "<br/>"),
-                MainDetails_FundrisingStartDate = ukAllData[61].ToString(),
-                MainDetails_FundStatus = ukAllData[62].ToString().TrimEnd(';'),
-                MainDetails_TotalCapitalForFinalClosing = ukAllData[63].ToString(),
-                MainDetails_InvestorExamples = ukAllData[64].ToString().Replace(";", "<br/>"),
+                PrefferedRegions = ukAllData[14].ToString().Replace(";", "<br/>"),
+                PEVC_FundType = ukAllData[18].ToString(),
+                WithGovernment = ukAllData[20].ToString(),
+                SeedOrNot = ukAllData[19].ToString(),
+                IKTOrNot= ukAllData[22].ToString(),
+                CorpOrNot= ukAllData[21].ToString(),
+                HeadOfficeCountry = ukAllData[9].ToString(),
             };
 
-            data.InvestHorizont = ukAllData[105].ToString();
-            data.InvestPeriod = ukAllData[106].ToString();
-            data.FundSpecialization = ukAllData[107].ToString().Replace(";", "<br/>");
-            data.ByingSharePreference = ukAllData[108].ToString();
-            data.FundNominationCurrency = ukAllData[109].ToString();
-            data.CompanySize = ukAllData[110].ToString().Replace(";", "<br/>");
-            data.InvestitionPozition = ukAllData[111].ToString();
-
-            data.GeographicOhvat = ukAllData[112].ToString();
-            data.GeographicFocus = ukAllData[113].ToString().Replace(";", "<br/>");
-            data.GeographyByRegions = ukAllData[114].ToString();
-
-            data.OtraslPreference = ukAllData[115].ToString().Replace(";", "<br/>");
-            data.StagePreference = ukAllData[116].ToString().Replace(";", "<br/>");
+            data.FundSpecialization = ukAllData[16].ToString().Replace(";", "<br/>");
+            data.GeographicFocus = ukAllData[14].ToString().Replace(";", "<br/>");
+            data.OtraslPreference = ukAllData[12].ToString().Replace(";", "<br/>");
+            data.StagePreference = ukAllData[13].ToString().Replace(";", "<br/>");
 
             return data;
         }
@@ -171,39 +127,22 @@ namespace RVCA_base.Models
             DataRow ukAllData = MyExcel.GetDetails("i", recordId);
             InvestmentData data = new InvestmentData()
             {
-                id = int.Parse(ukAllData[33].ToString()),
-                fund_id = int.Parse(ukAllData[0].ToString()),
-                ProjectName = ukAllData[1].ToString(),
-                Otrasl = ukAllData[2].ToString(),
-                Region = ukAllData[3].ToString(),
+                id = int.Parse(ukAllData[5].ToString()),
+                ProjectName = ukAllData[2].ToString(),
+                Otrasl = ukAllData[7].ToString(),
+                Region = ukAllData[9].ToString(),
 
-                Description = ukAllData[4].ToString(),
-                Date = ukAllData[5].ToString(),
-                AnouncementDate = ukAllData[6].ToString(),
-                InvestmentVolume = ukAllData[7].ToString(),
+                Description = ukAllData[42].ToString(),
+                InvestmentVolume = ukAllData[13].ToString(),
 
-                Stage = ukAllData[8].ToString(),
-                Round = ukAllData[9].ToString(),
-                DealType = ukAllData[10].ToString(),
-                InvestorName = ukAllData[11].ToString(),
-                InvestorType = ukAllData[12].ToString(),
-                InvestorLocation = ukAllData[13].ToString(),
+                Stage = ukAllData[14].ToString(),
+                Round = ukAllData[53].ToString(),
+                DealType = ukAllData[18].ToString(),
+                InvestorName = ukAllData[55].ToString(),
+                InvestorType = ukAllData[57].ToString(),
 
-                SellerName = ukAllData[14].ToString(),
-                SellerType = "",
-                SellerLocation = ukAllData[15].ToString(),
-                InvestmentInCapital = ukAllData[16].ToString(),
-                AquiredShare = ukAllData[17].ToString(),
-                TotalInvestorShare = ukAllData[18].ToString(),
-                StockSplit = ukAllData[19].ToString(),
-                PreMoneyValuation = ukAllData[20].ToString(),
-                PostValuation = ukAllData[21].ToString(),
-                DealVolume = ukAllData[22].ToString(),
-                DealStatus = ukAllData[23].ToString(),
-                TotalInvested = ukAllData[24].ToString(),
-                Sindicated = ukAllData[25].ToString(),
-                FollowOn = ukAllData[26].ToString(),
-                Suppliers = ukAllData[27].ToString()
+                Sindicated = ukAllData[16].ToString(),
+                FollowOn = ukAllData[15].ToString(),
             };
             return data;
         }

@@ -25,92 +25,37 @@ else
 
     <h3>Основные сведения</h3>
     <table class="table table-striped">
-        <tr><td>Описание</td><td>@Model.Description</td></tr>
         <tr><td>Сайт</td><td><a href="@Model.WebSite">@Model.WebSite</a></td></tr>
-        <tr><td>Тип деятельности</td><td>@Model.TypeOfBusiness</td></tr>
-        <tr><td>Юридическое название</td><td>@Model.LegalName</td></tr>
         <tr><td>Юрисдикция</td><td>@Model.Jurisdiction</td></tr>
         <tr><td>Тип инвестора </td><td>@Model.InvestorType</td></tr>
         <tr><td>Тип фонда</td><td>@Model.FundType</td></tr>
-        <tr><td>Статус инвестора </td><td>@Model.InvestorStatus</td></tr>
-        <tr><td>Год основания</td><td>@Model.FoundationDate</td></tr>
-        <tr><td>Активы под управлением</td><td>@Model.ActivesUnderControl</td></tr>
-        <tr><td>Целевой размер </td><td>@Model.TargetSize</td></tr>
-        @*<tr><td>Целевой размер Hard Cap</td><td><span style="color:lightgray">Число</span></td></tr>*@
-        <tr><td>Dry Powder</td><td>@Model.DryPowder</td></tr>
-        <tr><td>Статус фонда</td><td>@Model.FundStatus</td></tr>
-        <tr><td>Источники капитала</td><td>@Html.Raw(Model.CapitalSources)</td></tr>
-        <tr><td>Географический охват</td><td>@Model.Geography</td></tr>
-        <tr><td>Географический фокус</td><td>@Html.Raw(Model.GeographyFocus)</td></tr>
-        <tr><td>Фокус по регионам РФ</td><td>@Html.Raw(Model.PrefferedRegions)</td></tr>
-        <tr><td>Фокус по отраслям</td><td>@Html.Raw(Model.IndustrialFocus)</td></tr>
-        <tr><td>Фокус по стадиям</td><td>@Html.Raw(Model.StageFocus)</td></tr>
-        <tr><td>Совокупное число инвестиций</td><td>@Model.TotalInvestmentsCount</td></tr>
-        <tr><td>Текущий портфель</td><td>@Model.CurrentPortfolio</td></tr>
-        <tr><td>Инвестиции в течение года</td><td>@Model.InvestmentsDuringYear</td></tr>
-        <tr><td>Выходы</td><td>@Model.Exits</td></tr>
-        <tr><td>Медианный объем раунда</td><td>@Model.MedianRoundVolume</td></tr>
-        @*<tr><td>Медианная оценка</td><td><span style="color:lightgray">Число</span></td></tr>*@
-        <tr><td>Число профессионалов</td><td>@Model.NumberOfProfessionals</td></tr>
-        <tr><td>Ожидаемое число инвестиций</td><td>@Model.PlannedInvestments</td></tr>
-        <tr><td>Ожидаемый объем инвестиции в одну портфельную компанию</td><td>@Model.PlannedInvestmentsPerCompany</td></tr>
         <tr><td>Тип фонда PE/VC</td><td>@Model.FundType</td></tr>
         <tr><td>Тип фонда с госкапиталом/без госкапитала</td><td>@Model.WithGovernment</td></tr>
         <tr><td>Тип фонда посевной/не посевной</td><td>@Model.SeedOrNot</td></tr>
         <tr><td>Тип фонда ИКТ/Не ИКТ</td><td>@Model.IKTOrNot</td></tr>
-        @*<tr><td>Тип фонда Корпоративный/Не корпоративный</td><td></td></tr>*@
-        <tr><td>Агент по размещению</td><td>@Model.Agent</td></tr>
-        <tr><td>Юридические консультанты формированию фонда</td><td>@Model.LawConsultants</td></tr>
-        <tr><td>Аудитор фонда</td><td>@Model.Auditor</td></tr>
-        <tr><td>Администратор фонда</td><td>@Model.Administrator</td></tr>
-        <tr><td>Этика</td><td>@Model.Etics</td></tr>
     </table>
 
     <h3>Контакты</h3>
     <table class="table table-striped">
-        <tr><td>Страна расположения Головного офиса</td><td>@Model.HeadOfficeCountry</td></tr>
-        <tr><td>Юрисдикция (страна)</td><td>@Model.HeadOfficeJurisdiction</td></tr>
-        <tr><td>Адрес Головного офиса</td><td>@Model.HeadOfficeAddress</td></tr>
-        <tr><td>Альтернативный офис</td><td>@Model.AlternateOfficeAddress</td></tr>
-        <tr><td>URL</td><td><a href="@Model.Url">@Model.Url</a></td></tr>
-        <tr><td>E-mails</td><td><a href="mailto:@Model.Email">@Model.Email</a></td></tr>
-        <tr><td>Телефон</td><td>@Model.Phone</td></tr>
+        <tr><td>Регион</td><td>@Model.HeadOfficeCountry</td></tr>
     </table>
 
     <h3>Основные характеристики</h3>
     <table class="table table-striped">        
-        <tr><td>Управляющая компания</td><td>@Model.MainDetails_ManagingCompany</td></tr>
-        <tr><td>Объем фонда</td><td>@Model.MainDetails_FundValue</td></tr>
-        @*<tr><td>Дата фиксирования коммитмента</td><td><span style="color:lightgray">Текстовый блок</span></td></tr>*@
-        <tr><td>Тип фонда</td><td>@Model.MainDetails_FundType</td></tr>
-        <tr><td>Источники финансирования</td><td>@Html.Raw(Model.MainDetails_FinanceSources)</td></tr>
-        <tr><td>Дата начала фандрайзинга</td><td>@Model.MainDetails_FundrisingStartDate</td></tr>
-        <tr><td>Статус фонда</td><td>@Model.MainDetails_FundStatus</td></tr>
-        <tr><td>Общий капитал, привлеченный в финальном закрытии (если фонд закрыт)</td><td>@Model.MainDetails_TotalCapitalForFinalClosing</td></tr>
-        <tr><td>Примеры инвесторов</td><td>@Html.Raw(Model.MainDetails_InvestorExamples)</td></tr>
         <tr><td>Тип фонда PE/VC</td><td>@Model.FundType</td></tr>
         <tr><td>Тип фонда с госкапиталом/без госкапитала</td><td>@Model.WithGovernment</td></tr>
         <tr><td>Тип фонда посевной/не посевной</td><td>@Model.SeedOrNot</td></tr>
         <tr><td>Тип фонда ИКТ/Не ИКТ</td><td>@Model.IKTOrNot</td></tr>
-        @*<tr><td>Тип фонда Корпоративный/Не корпоративный</td><td> </td></tr>*@
     </table>
 
     <h4>Инвестиционная стратегия</h4>
     <table class="table table-striped">
-        <tr><td>Инвестиционный горизонт</td><td>@Model.InvestHorizont</td></tr>
-        <tr><td>Инвестиционный период</td><td>@Model.InvestPeriod</td></tr>
         <tr><td>Специализация фонда</td><td>@Html.Raw(Model.FundSpecialization)</td></tr>
-        <tr><td>Предпочтения по приобретаемой доле</td><td>@Model.ByingSharePreference </td></tr>
-        <tr><td>Валюта номинирования фонда</td><td>@Model.FundNominationCurrency</td></tr>
-        <tr><td>Размер компании</td><td>@Html.Raw(Model.CompanySize)</td></tr>
-        <tr><td>Инвестиционные позиции</td><td>@Model.InvestitionPozition</td></tr>
     </table>
 
     <h4>Географические предпочтения</h4>
     <table class="table table-striped">
-        <tr><td>Географический охват</td><td>@Model.GeographicOhvat</td></tr>
         <tr><td>Географический фокус</td><td>@Html.Raw(Model.GeographicFocus)</td></tr>
-        <tr><td>Фокус по регионам РФ</td><td>@Model.GeographyByRegions</td></tr>
     </table>
 
     <h4>Отраслевые предпочтения</h4>
