@@ -15,7 +15,7 @@ export default {
       },
       incorrect: {
         login: 'testtest@mail.eu',
-        password: '1111'
+        password: '1111123'
       }
     }
   }
