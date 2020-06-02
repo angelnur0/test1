@@ -5,7 +5,7 @@ export default {
       slowMo: 80,
       args: [`--window-size=1280,920`]
     },
-    defaultTimeout: 100000,
+    defaultTimeout: 10000,
     width: 1280,
     height: 920,
     login: {
